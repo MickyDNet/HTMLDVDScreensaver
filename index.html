@@ -1,0 +1,72 @@
+<style>
+	body {
+		background-color:black;
+	}
+	
+	#dvdImg {
+		width:350px;
+		position:absolute;
+		top:0;
+		left:0;
+	}
+</style>
+
+<img src="images/dvd-1.png" id="dvdImg"/>
+
+<script>
+myY = 0;
+myX = 0;
+myYDown = true;
+myXRight = true;
+myColor = 1;
+
+setInterval(function(){
+	myDVDLogo = document.getElementById("dvdImg");
+	
+	if(myColor == 5){
+		myColor = 1;
+	}
+	
+	if(myYDown == true){
+		myY++;
+	} else {
+		myY--;
+	}
+	
+	if(myXRight == true){
+		myX++;
+	} else {
+		myX--;
+	}
+	
+	if(myX == 0){
+		console.log("Bump on the left, swapping");
+		myXRight = true;
+		myDVDLogo.src = "images/dvd-"+myColor+".png";
+		myColor++;
+	}
+	if(myY == 0){
+		console.log("Bump on the top, swapping");
+		myYDown = true;
+		myDVDLogo.src = "images/dvd-"+myColor+".png";
+		myColor++;
+	}
+	
+	if(myX == (window.innerWidth - myDVDLogo.width)){
+		console.log("Bump on the right, swapping");
+		myXRight = false;
+		myDVDLogo.src = "images/dvd-"+myColor+".png";
+		myColor++;
+	}
+	if(myY == (window.innerHeight - myDVDLogo.height)){
+		console.log("Bump on the bottom, swapping");
+		myYDown = false;
+		myDVDLogo.src = "images/dvd-"+myColor+".png";
+		myColor++;
+	}
+	
+	myDVDLogo.style.top = myY;
+	myDVDLogo.style.left = myX;
+}, 6);
+
+</script>
